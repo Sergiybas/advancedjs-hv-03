@@ -1,0 +1,50 @@
+.cats-section {
+  margin-top: 50px;
+}
+
+.container {
+
+  width: 1200px;
+  margin: auto;
+}
+
+.input-block {
+  background: linear-gradient(to right, grey, black);
+  color: white;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 60vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  padding-top: 100px;
+  border-radius: 20px;
+  box-shadow: 0 0 15px gray;
+}
+
+.input-label {
+  font-size: 48px;
+  font-weight: bold;
+  text-shadow: 0 0 10px #0bc03e;
+
+  margin-bottom: 40px;
+
+}
+
+.card-cat {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 40px;
+  margin: 20px;
+}
+
+.card-cat p {
+  font-size: 25px;
+  line-height: 150%;
+}
+
+.card-cat img {
+  border-radius: 20px;
+  box-shadow: 0 0 10px #0bc03e;
+}
