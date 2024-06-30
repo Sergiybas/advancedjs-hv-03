@@ -1,50 +1,154 @@
-.cats-section {
-  margin-top: 50px;
-}
-
 .container {
-
-  width: 1200px;
+  width: 1280px;
   margin: auto;
+
 }
 
-.input-block {
-  background: linear-gradient(to right, grey, black);
-  color: white;
+.cat-img {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+/* .block{
   display: flex;
-  align-items: center;
   flex-direction: column;
-  height: 100vh;
+  background-color: ;
+} */
+.block {
   margin: 0;
+  padding: 0;
   font-family: Arial, sans-serif;
-  padding-top: 100px;
-  border-radius: 20px;
-  box-shadow: 0 0 15px gray;
-}
-
-.input-label {
-  font-size: 48px;
-  font-weight: bold;
-  text-shadow: 0 0 10px #0bc03e;
-
-  margin-bottom: 40px;
-
-}
-
-.card-cat {
+  background: linear-gradient(to bottom, rgba(180, 221, 180, 1) 0%, rgb(26, 223, 223) 17%, rgb(137, 165, 203) 33%, rgb(83, 71, 215) 67%, rgb(89, 90, 169) 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  flex-direction: row;
-  gap: 40px;
+  justify-content: center;
+  color: #333;
+}
+
+.cat-card {
+  background: linear-gradient(to bottom, #ebea9d 0%, rgba(241, 218, 54, 1) 77%);
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  max-width: 1200px;
+  width: 100%;
   margin: 20px;
 }
 
-.card-cat p {
-  font-size: 25px;
-  line-height: 150%;
+.select,
+.loader,
+.error {
+  margin: 20px;
 }
 
-.card-cat img {
+.select {
+  max-width: 400px;
+}
+
+h2,
+h3,
+p {
+  margin: 10px 0;
+}
+
+
+
+img {
+  margin: auto;
+  max-width: 100%;
   border-radius: 20px;
-  box-shadow: 0 0 10px #0bc03e;
+}
+
+
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  position: relative;
+  animation: rotate 1s linear infinite
+}
+
+.loader::before,
+.loader::after {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  inset: 0px;
+  border-radius: 50%;
+  border: 5px solid #FFF;
+  animation: prixClipFix 2s linear infinite;
+}
+
+.loader::after {
+  transform: rotate3d(90, 90, 0, 180deg);
+  border-color: #FF3D00;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg)
+  }
+
+  100% {
+    transform: rotate(360deg)
+  }
+}
+
+@keyframes prixClipFix {
+  0% {
+    clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0)
+  }
+
+  50% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0)
+  }
+
+  75%,
+  100% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%)
+  }
+}
+
+
+.error {
+  color: red;
+  font-size: 40px;
+  text-align: center;
+}
+
+.cat-api {
+  margin-top: 30px;
+  font-size: 70px;
+  color: rgba(241, 218, 54, 1);
+  font-family: "PT Serif", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.find {
+  margin-top: 50px;
+}
+
+.name {
+  margin-bottom: 40px;
+  text-align: center;
+  font-size: 50px;
+  color: rgb(91, 140, 172);
+  font-family: "PT Serif", serif;
+  font-weight: 700;
+}
+
+.description {
+  line-height: 150%;
+  font-size: 45px;
+}
+
+.temperament {
+  line-height: 150%;
+  font-weight: 500;
+  font-size: 45px;
 }

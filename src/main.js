@@ -1,54 +1,61 @@
-const url = `https://api.thecatapi.com/v1/breeds`;
-const api_key =
-  'live_amR3jnds0mGQH8PwUCOhfMQ6LomPPLV2bVbdHP3dN8rejmbHEEQUDnPQt7DN0YuQ';
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
+import SlimSelect from 'slim-select';
+import { fetchBreeds, fetchCatByBreed } from './cat-api.js';
 
-fetch(url, {
-  headers: {
-    'x-api-key': api_key,
-  },
-})
-  .then(response => {
-    return response.json();
-  })
-  .then(data => {
-    const catArr = data.map(dat => {
-      const { name, image, description } = dat;
-      return {
-        name,
-        image: image,
-        descr: description,
-      };
+const refs = {
+  selects: document.querySelector('.select'),
+  card: document.querySelector('.cat-card'),
+  load: document.querySelector('.loader'),
+  error: document.querySelector('.error'),
+};
+
+const select = new SlimSelect({
+  select: refs.selects,
+});
+
+refs.load.style.display = 'none';
+refs.error.style.display = 'none';
+refs.card.style.display = 'none';
+async function searchCats() {
+  try {
+    await fetchBreeds().then(breeds => {
+      const data = breeds.map(({ id, name }) => ({ value: id, text: name }));
+      select.setData(data);
+      refs.selects.addEventListener('change', selectCat);
     });
-    markupList(catArr);
-    input.addEventListener('input', evt => inputDate(evt, catArr));
-  })
-  .catch(error => {
-    console.log('Error:', error);
-  });
-const list = document.querySelector('.js-details');
-const input = document.querySelector('.js-input');
-const card = document.querySelector('.card');
-function markupList(catArr) {
-  list.innerHTML = catArr
-    .map(cat => `<option class="option" value="${cat.name}"></option>`)
-    .join('');
-  console.log(list);
-  console.log(catArr);
+  } catch (error) {
+    refs.error.style.display = 'block';
+
+    iziToast.show({
+      message:
+        'Щось пішло не так! Перезавантажте сторінку та спроьуйте ще раз!',
+    });
+  }
 }
-function inputDate(evt, catArr) {
-  const nameCat = evt.currentTarget.value;
-  const filter = catArr.filter(cat => cat.name.includes(nameCat));
-  const cardMap = filter
-    .map(cat => {
-      const { name, image, descr } = cat;
+searchCats();
+async function selectCat() {
+  refs.card.style.display = 'none';
+  refs.load.style.display = 'block';
+  const nameCat = refs.selects.value;
+  console.log('nameCat::: ', nameCat);
+  const data = await fetchCatByBreed(nameCat);
+  console.log('data::: ', data);
+  catCard(data);
+}
+async function catCard(data) {
+  refs.card.innerHTML = data
+    .map(({ url, breeds }) => {
+      const [{ description, temperament, name }] = breeds;
+
       return `
-      <li class="card-cat">
-        <img src="${image.url}" alt="${name}" width=400px>
-        <p>${descr}</p>
-      </li>
+      <h2 class="name" >${name}</h2>
+    <img src="${url}" alt="${name}">
+    <h3 class="temperament">Характер: ${temperament}</h3>
+    <p class="description">Опис: ${description}</p>
     `;
     })
     .join('');
-  card.innerHTML = cardMap;
-  evt.currentTarget.value = '';
+  refs.load.style.display = 'none';
+  refs.card.style.display = 'block';
 }
