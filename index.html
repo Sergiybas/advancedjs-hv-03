@@ -2,24 +2,35 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="/advancedjs-hv-03/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vanilla App Template</title>
     
     <script type="module" crossorigin src="/advancedjs-hv-03/commonHelpers.js"></script>
-    <link rel="stylesheet" href="/advancedjs-hv-03/assets/index-584285d9.css">
+    <link rel="modulepreload" crossorigin href="/advancedjs-hv-03/assets/vendor-0c7b7ddd.js">
+    <link rel="stylesheet" href="/advancedjs-hv-03/assets/vendor-e5212ee8.css">
+    <link rel="stylesheet" href="/advancedjs-hv-03/assets/index-6cb218c8.css">
   </head>
   <body>
     <section class="cats-section">
   <div class="container">
-    <div class="input-block">
-      <label class="input-label" for="input-cats">Виберіть породу кота</label>
-      <input list="cat-options" name="input-cats" id="input-cats" class="js-input">
-      <datalist id="cat-options" class="js-details">
-      </datalist>
-        <ul class="card"> </ul>
+   <div class="block">
+    <img src="../img/pngegg .png" class="cat-img" alt="Cat" width="300px">
+    <h1 class="cat-api">Котопошук</h1>
+    <h2 class="find">
+      Вибери породу кота.
+    </h2>
+    <select  class="select"></select>
+    <span class="loader"></span>
+    <span class="error">Щось пішло не так! Перезавантажте сторінку та спроьуйте ще раз!</span>
+    <div class="cat-card">
+      
     </div>
-  
+   </div>
   </div>
 </section>
 
